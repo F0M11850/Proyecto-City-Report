@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CityReport - Inicio</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/cityreport-theme.css" />
+</head>
+<body>
+<div id="loader" class="loader-wrapper">   
+  <div class="container">
+    <div class="dot"></div>
+    <div class="traveler"></div>
+  </div>
+  <svg width="0" height="0" class="svg">
+    <defs>
+      <filter id="uib-jelly-triangle-ooze">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="3.333" result="blur" />
+        <feColorMatrix
+          in="blur"
+          mode="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+          result="ooze"
+        />
+        <feBlend in="SourceGraphic" in2="ooze" />
+      </filter>
+    </defs>
+  </svg>
+</div>
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo-container">
+        <a href="index.html" class="logo-link header-logos">
+          <img src="img/urbano.png" alt="Urbano" class="logo-img logo-urbano" />
+          <img src="img/logo_city.png" alt="CityReport" class="logo-img logo-city" />
+        </a>
+      </div>
+
+      <div class="header-title">
+        <h1>CityReport</h1>
+        <div class="header-subtitle">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/>
+          </svg>
+          Panel de administración
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link active" aria-current="page"
+           style="color:#dff3ff;text-decoration:none;display:flex;align-items:center;gap:4px;font-weight:700">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px">
+            <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          Inicio
+        </a>
+
+        <a href="reportes_consultar.html" class="nav-link"
+           style="color:#dff3ff;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+          </svg>
+          Reportes
+        </a>
+
+        <a href="estadisticas.html" class="nav-link"
+           style="color:#dff3ff;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Estadísticas
+        </a>
+
+        <a href="usuarios.html" class="nav-link" data-role-allow="1" style="color:#dff3ff;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px">
+            <path d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 0 1 5-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+          </svg>
+          Usuarios
+        </a>
+
+        <a href="#" id="logout-link" style="color:#ffd;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px">
+            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          Cerrar sesión
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="principal">
+    <div class="dashboard-grid">
+      <div class="welcome-card card">
+        <div class="welcome-time"><span id="current-time">Cargando hora...</span></div>
+        <h2 class="welcome-heading">Bienvenido a CityReport</h2>
+        <p id="saludo" class="welcome-message">Cargando...</p>
+
+        <div class="stats-preview">
+          <div class="stat-item">
+            <div class="stat-value" id="total-reportes">--</div>
+            <div class="stat-label">Total Reportes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="reportes-pendientes">--</div>
+            <div class="stat-label">Pendientes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value" id="reportes-resueltos">--</div>
+            <div class="stat-label">Resueltos</div>
+          </div>
+        </div>
+
+        <div class="action-buttons" style="display:flex;flex-wrap:wrap;gap:.6rem">
+          <a class="btn btn-primary" href="reportes_consultar.html">Ver reportes</a>
+          <a class="btn btn-accent" href="reportes_agregar.html" data-role-allow="1,2">Crear reporte</a>
+          <a class="btn btn-primary" href="reportes_editar.html" data-role-allow="1,2,3">Editar reportes</a>
+          <a class="btn btn-primary" href="usuarios.html" data-role-allow="1">Usuarios</a>
+        </div>
+
+        <button id="logout-btn" class="btn btn-outline" style="margin-top:1rem">
+          Cerrar sesión
+        </button>
+      </div>
+
+      <div class="quick-access card">
+        <div class="quick-access-header" style="display:flex;gap:12px;justify-content:center;margin-bottom:.5rem">
+          <img src="img/urbano.png" alt="Urbano" class="quick-access-logo" />
+          <img src="img/logo_city.png" alt="CityReport" class="quick-access-logo" />
+        </div>
+        <h3 style="text-align:center;font-size:24px">Accesos rápidos</h3>
+        <div class="quick-links" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem;margin-top:.6rem">
+          <a href="reportes_agregar.html" class="quick-link btn btn-accent" data-role-allow="1,2">Agregar Reporte</a>
+          <a href="reportes_consultar.html" class="quick-link btn btn-primary">Consultar Reporte</a>
+          <a href="reportes_editar.html" class="quick-link btn btn-primary" data-role-allow="1,2,3">Editar Reporte</a>
+          <a href="estadisticas.html" class="quick-link btn btn-primary">Estadísticas</a>
+          <a href="usuarios.html" class="quick-link btn btn-primary" data-role-allow="1">Gestión de Usuarios</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">&copy; <span id="year"></span> CityReport — Todos los derechos reservados</div>
+  </footer>
+
+  <!-- ================== SCRIPT (SIN supabase-js) =================== -->
+  <script>
+    // ========= CONFIG SUPABASE (REST) =========
+    const SUPABASE_URL = 'https://ghywlqpirjqsmmlyomaw.supabase.co';
+    const SUPABASE_ANON_KEY =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoeXdscXBpcmpxc21tbHlvbWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4MTYwMTYsImV4cCI6MjA3NTM5MjAxNn0.v8fs-lpmWu7cmqM45wKvsFNaHJxcJro4dSxknDWgVGI';
+
+    const debugIndex = (...args) => console.log('[INDEX]', ...args);
+
+    // ==================== Sesión y roles ====================
+    (function roleGate() {
+      const raw = sessionStorage.getItem('user');
+      if (!raw) { location.href='login.html'; return; }
+
+      let u = null;
+      try { u = JSON.parse(raw); } catch {}
+      if (!u || u.id_rol == null) { location.href='login.html'; return; }
+
+      const role = Number(u.id_rol);
+      document.body.dataset.role = role;
+
+      // Mostrar / ocultar elementos por rol
+      document.querySelectorAll('[data-role-allow]').forEach(el => {
+        const allow = el.getAttribute('data-role-allow')
+          .split(',').map(n => Number(n.trim()));
+        if (!allow.includes(role)) el.style.display = 'none';
+      });
+
+      // Función de capitalización
+      function toTitleCase(str) {
+        return str.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+      }
+
+      // Saludo personalizado
+      const h = new Date().getHours();
+      let saludo = 'Buenos días';
+      if (h >= 12 && h < 19) saludo = 'Buenas tardes';
+      else if (h >= 19 || h < 6) saludo = 'Buenas noches';
+
+      const rawName = u.usuario || 'usuario';
+      let nameFormatted = rawName.replace(/_/g, ' ');
+      nameFormatted = toTitleCase(nameFormatted);
+
+      const saludoEl = document.getElementById('saludo');
+      if (saludoEl)
+        saludoEl.textContent = `${saludo}, ${nameFormatted}. Bienvenido al panel de administración de CityReport.`;
+    })();
+
+    // ==================== Reloj ====================
+    function updateDateTime() {
+      const now = new Date();
+      const opts = {
+        weekday:'long',
+        year:'numeric',
+        month:'long',
+        day:'numeric',
+        hour:'2-digit',
+        minute:'2-digit'
+      };
+      const el = document.getElementById('current-time');
+      if (el) el.textContent = now.toLocaleDateString('es-MX', opts);
+    }
+
+    // ==================== Stats por REST ====================
+    async function loadDashboardStats() {
+      try {
+        const url = SUPABASE_URL + '/rest/v1/reportes?select=estatus';
+        const resp = await fetch(url, {
+          method: 'GET',
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!resp.ok) {
+          const txt = await resp.text();
+          console.error('Error HTTP stats:', resp.status, txt);
+          return;
+        }
+
+        const data = await resp.json();
+        debugIndex('Reportes recibidos:', data.length);
+
+        const total      = data.length;
+        const pendientes = data.filter(r => r.estatus === 'Pendiente').length;
+        const resueltos  = data.filter(r => r.estatus === 'Resuelto').length;
+
+        document.getElementById('total-reportes').textContent       = total;
+        document.getElementById('reportes-pendientes').textContent  = pendientes;
+        document.getElementById('reportes-resueltos').textContent   = resueltos;
+      } catch (err) {
+        console.error('Error stats:', err);
+      }
+    }
+
+    // ==================== Logout ====================
+    function logout() {
+      sessionStorage.removeItem('user');
+      location.href='login.html';
+    }
+    document.getElementById('logout-btn')?.addEventListener('click', logout);
+    document.getElementById('logout-link')?.addEventListener('click', e => { e.preventDefault(); logout(); });
+
+    // Inicialización
+    document.getElementById('year').textContent = new Date().getFullYear();
+    updateDateTime(); 
+    setInterval(updateDateTime, 60000);
+    loadDashboardStats();
+  </script>
+
+  <script>
+    // Ocultar loader después de un breve tiempo
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if (loader) loader.style.display = "none";
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

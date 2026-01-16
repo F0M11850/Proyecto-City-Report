@@ -1,0 +1,12 @@
+/.env
+/.env.local
+/.env.*.local
+node_modules/
+vendor/
+/.vscode/
+/.env
+/vendor/
+/.env.local
+/node_modules/
+/.idea/
+/.vscode/

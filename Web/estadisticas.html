@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Estadísticas - CityReport</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/cityreport-theme.css">
+  <link rel="stylesheet" href="css/forms.css">
+  <link rel="stylesheet" href="css/tables.css">
+  <link rel="stylesheet" href="css/modals.css">
+  <link rel="stylesheet" href="css/stats.css">
+
+  <style>
+    :root {
+      /* Azul institucional CityReport */
+      --brand-ink: #154965;
+    }
+
+    /* Botón base */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.25rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all .18s ease;
+      font-family: inherit;
+    }
+
+    /* Botón primario unificado */
+    .btn-primary {
+      background: var(--brand-ink) !important;
+      color: #fff !important;
+      box-shadow: 0 4px 6px -1px rgba(13,79,86,.10);
+    }
+
+    /* Hover consistente */
+    .btn-primary:hover,
+    .btn-hover-lift:hover {
+      background: var(--brand-ink) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 8px -1px rgba(13,79,86,.15);
+    }
+
+    .btn svg.nav-icon {
+      width: 18px;
+      height: 18px;
+    }
+  </style>
+
+  <script src="js/statsAnimation.js" defer></script>
+</head>
+<body>
+  <div id="loader" class="loader-wrapper">
+    <div class="container">
+      <div class="dot"></div>
+      <div class="traveler"></div>
+    </div>
+
+    <svg width="0" height="0" class="svg">
+      <defs>
+        <filter id="uib-jelly-triangle-ooze">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3.333" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+            result="ooze"
+          />
+          <feBlend in="SourceGraphic" in2="ooze" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+
+  <header class="main-header">
+    <div class="header-container">
+      <div class="logo-container">
+        <a href="index.html" class="logo-link" style="display:flex;align-items:center;gap:12px;">
+          <img src="img/urbano.png" alt="Urbano" style="height:140px;background:white;padding:10px;border-radius:10px;transition:transform 0.2s ease;box-shadow:0 3px 6px rgba(0,0,0,0.15)">
+          <img src="img/logo_city.png" alt="CityReport" style="height:138px;background:white;padding:10px;border-radius:10px;transition:transform 0.2s ease;box-shadow:0 3px 6px rgba(0,0,0,0.15)">
+        </a>
+      </div>
+      <h1 class="header-title">Estadísticas</h1>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">
+          <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+          <span>Inicio</span>
+        </a>
+        <a href="reportes_consultar.html" class="nav-link">
+          <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+          </svg>
+          <span>Reportes</span>
+        </a>
+        <a href="estadisticas.html" class="nav-link active">
+          <svg class="nav-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          <span>Estadísticas</span>
+        </a>
+
+        <!-- Enlace solo para admin -->
+        <a href="usuarios.html" class="nav-link admin-only" style="display:none">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 0 1 5-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+          </svg>
+          <span>Usuarios</span>
+        </a>
+
+        <a href="#" id="logout-link" style="color:#ffd;text-decoration:none;display:flex;align-items:center;gap:4px">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+          </svg>
+          <span>Cerrar sesión</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Control de rol -->
+  <script>
+    (function setupRole(){
+      const raw = sessionStorage.getItem('user');
+      if(!raw){ window.location.href='login.html'; return; }
+      let u=null; try{ u=JSON.parse(raw); }catch(e){}
+      if(!u || typeof u.id_rol === 'undefined'){ window.location.href='login.html'; return; }
+      const isAdmin = Number(u.id_rol) === 1;
+      document.querySelectorAll('.admin-only').forEach(el => { el.style.display = isAdmin ? 'flex' : 'none'; });
+      document.getElementById('logout-link')?.addEventListener('click',(e)=>{
+        e.preventDefault(); sessionStorage.removeItem('user'); window.location.href='login.html';
+      });
+    })();
+  </script>
+
+  <main>
+    <div class="content-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          Panel de Estadísticas
+        </div>
+        <div class="action-buttons">
+          <span class="stats-date" id="dateNow"></span>
+          <a href="index.html" class="btn btn-primary btn-hover-lift">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            Inicio
+          </a>
+        </div>
+      </div>
+
+      <div class="stats-cards animate-slide-in">
+        <div class="stat-card data-card total">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <span class="stat-label">Total de Reportes</span>
+          <p class="stat-value animate-count" id="totalVal">0</p>
+        </div>
+        <div class="stat-card data-card pending">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="stat-label">Pendientes</span>
+          <p class="stat-value animate-count" id="pendVal">0</p>
+        </div>
+        <div class="stat-card data-card in-progress">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+          </svg>
+          <span class="stat-label">En Proceso</span>
+          <p class="stat-value animate-count" id="procVal">0</p>
+        </div>
+        <div class="stat-card data-card completed">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span class="stat-label">Resueltos</span>
+          <p class="stat-value animate-count" id="resVal">0</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="info-card data-card">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          <p class="info-value" id="coloniaFreq">—</p>
+          <p class="info-label">Colonia más frecuente</p>
+        </div>
+        <div class="info-card data-card">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+          <p class="info-value" id="clasificacionFreq">—</p>
+          <p class="info-label">Reporte más común</p>
+        </div>
+        <div class="info-card data-card">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="info-value" id="picoDia">—</p>
+          <p class="info-label">Pico de actividad semanal</p>
+        </div>
+        <div class="info-card data-card">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+          <p class="info-value" id="tasaRes">—</p>
+          <p class="info-label">Tasa De Resolución General</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================== LÓGICA JS CON REST API ================== -->
+  <script type="module">
+    const SUPABASE_URL = 'https://ghywlqpirjqsmmlyomaw.supabase.co';
+    const SUPABASE_ANON_KEY =
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdoeXdscXBpcmpxc21tbHlvbWF3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk4MTYwMTYsImV4cCI6MjA3NTM5MjAxNn0.v8fs-lpmWu7cmqM45wKvsFNaHJxcJro4dSxknDWgVGI';
+
+    const FIELDS = {
+      status: 'estatus',
+      coloniaId: 'id_colonia',
+      clasifId: 'id_clasificacion',
+      date: 'fecha_reporte'
+    };
+
+    // Protección de ruta
+    if (!sessionStorage.getItem('user')) window.location.href = 'login.html';
+
+    // Fecha/hora en encabezado
+    document.getElementById('dateNow').textContent = new Date().toLocaleString('es-MX', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+
+    // Loader helpers
+    function showLoading(){
+      const l = document.getElementById('loader');
+      if (l) l.style.display = 'flex';
+    }
+    function hideLoading(){
+      const l = document.getElementById('loader');
+      if (l) l.style.display = 'none';
+    }
+
+    // Construir URL REST
+    function buildUrl(table, { select='*', filters={}, order, limit } = {}){
+      const url = new URL(SUPABASE_URL + '/rest/v1/' + table);
+      url.searchParams.set('select', select);
+      Object.entries(filters).forEach(([col, cond]) => {
+        if (cond != null && cond !== '') url.searchParams.set(col, cond);
+      });
+      if (order) url.searchParams.set('order', order);
+      if (limit) url.searchParams.set('limit', String(limit));
+      return url;
+    }
+
+    async function restGet(table, options = {}){
+      const url = buildUrl(table, options);
+      const resp = await fetch(url.toString(), {
+        method: 'GET',
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json'
+        }
+      });
+      if (!resp.ok){
+        const txt = await resp.text();
+        throw new Error(txt || 'Error HTTP ' + resp.status);
+      }
+      return await resp.json();
+    }
+
+    function setAnimatedValue(id, val){
+      const el = document.getElementById(id);
+      if (!el) return;
+      const n = Number(val || 0);
+      if (typeof window.animateValue === 'function'){
+        window.animateValue(el, 0, n, 1200);
+      } else {
+        el.textContent = n;
+      }
+    }
+
+    async function loadStats(){
+      showLoading();
+      try {
+        // Traemos todos los datos relevantes de una sola vez
+        const reports = await restGet('reportes', {
+          select: `id,${FIELDS.status},${FIELDS.coloniaId},${FIELDS.clasifId},${FIELDS.date}`,
+          limit: 10000
+        });
+
+        const totalNum = reports.length;
+        let pendNum = 0, procNum = 0, resNum = 0;
+
+        const colCount = {};
+        const clasCount = {};
+        const dayCount  = {};
+
+        for (const r of reports){
+          const st = (r[FIELDS.status] || r.estatus || r.estado || r.status || '').trim();
+
+          if (st === 'Pendiente')      pendNum++;
+          else if (st === 'En Proceso') procNum++;
+          else if (st === 'Resuelto')   resNum++;
+
+          const colId = r[FIELDS.coloniaId];
+          if (colId != null) colCount[colId] = (colCount[colId] || 0) + 1;
+
+          const claId = r[FIELDS.clasifId];
+          if (claId != null) clasCount[claId] = (clasCount[claId] || 0) + 1;
+
+          const fecha = r[FIELDS.date];
+          if (fecha){
+            const d = new Date(fecha).getDay(); // 0=Domingo ... 6=Sábado
+            dayCount[d] = (dayCount[d] || 0) + 1;
+          }
+        }
+
+        // Totales
+        setAnimatedValue('totalVal', totalNum);
+        setAnimatedValue('pendVal',  pendNum);
+        setAnimatedValue('procVal',  procNum);
+        setAnimatedValue('resVal',   resNum);
+
+        // Valores por defecto
+        const coloniaFreqEl       = document.getElementById('coloniaFreq');
+        const clasificacionFreqEl = document.getElementById('clasificacionFreq');
+        const picoDiaEl           = document.getElementById('picoDia');
+
+        coloniaFreqEl.textContent       = '—';
+        clasificacionFreqEl.textContent = '—';
+        picoDiaEl.textContent           = '—';
+
+        // Colonia más frecuente
+        const topCol = Object.entries(colCount).sort((a,b)=>b[1]-a[1])[0];
+        if (topCol){
+          const [colId] = topCol;
+          const colData = await restGet('colonias', {
+            select: 'id,nombre_colonia',
+            filters: { id: 'eq.' + colId },
+            limit: 1
+          });
+          const col = colData && colData[0];
+          const nombreCol = col?.nombre_colonia || `#${colId}`;
+          coloniaFreqEl.textContent = nombreCol;
+        }
+
+        // Clasificación más común
+        const topClas = Object.entries(clasCount).sort((a,b)=>b[1]-a[1])[0];
+        if (topClas){
+          const [clasId] = topClas;
+          const clasData = await restGet('clasificaciones', {
+            select: 'id,nombre',
+            filters: { id: 'eq.' + clasId },
+            limit: 1
+          });
+          const cl = clasData && clasData[0];
+          const rawName = cl?.nombre || `#${clasId}`;
+          const plainName = rawName.replace(/\(.*?\)/g, '').trim();
+          clasificacionFreqEl.textContent = plainName;
+        }
+
+        // Pico de actividad semanal
+        const diasSemana = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const topDay = Object.entries(dayCount).sort((a,b)=>b[1]-a[1])[0];
+        if (topDay){
+          const idx = Number(topDay[0]);
+          const dia = diasSemana[idx] || '—';
+          picoDiaEl.textContent = dia;
+        }
+
+        // Tasa de resolución
+        const tasa = totalNum ? Math.round((resNum / totalNum) * 100) : 0;
+        document.getElementById('tasaRes').textContent = `${tasa}% (${resNum}/${totalNum})`;
+
+      } catch (err){
+        console.error('Error cargando estadísticas:', err);
+        // Si falla, al menos dejamos todo en "—"
+        document.getElementById('totalVal').textContent = '—';
+        document.getElementById('pendVal').textContent  = '—';
+        document.getElementById('procVal').textContent  = '—';
+        document.getElementById('resVal').textContent   = '—';
+      } finally {
+        hideLoading();
+      }
+    }
+
+    loadStats();
+  </script>
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const loader = document.getElementById("loader");
+        if (loader) loader.style.display = "none";
+      }, 2000); // segundos
+    });
+  </script>
+</body>
+</html>
